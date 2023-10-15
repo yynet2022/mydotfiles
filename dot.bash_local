@@ -1,0 +1,29 @@
+#
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+export PS1="\u# "
+
+case "$OSTYPE" in
+    *msys*)
+	echo "Git Bash ($OSTYPE)"
+	export LC_COLLATE=C.UTF-8
+	;;
+    *) echo "Not Git Bash ($OSTYPE)" ;;
+esac
+
+case "$(uname -r)" in
+    *microsoft*)
+	echo "WSL ($WSL_DISTRO_NAME)"
+	export DISPLAY=:0
+	export PULSE_SERVER=tcp:$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}') #GWSL
+	;;
+    *) echo "Not WSL $(uname -r)" ;;
+esac
+
+lstree()
+{
+    test "x${1}" = x && set "."
+    echo "$1"
+    (cd "$1" && find . | sed -e '1d;s,[^/]*/,|  ,g;s,^\(\(|  \)*\)|  ,\1|--,')
+}

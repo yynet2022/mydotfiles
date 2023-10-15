@@ -1,0 +1,15 @@
+[user]
+	name = Name Name Name
+	email = user@example.org
+[color]
+	ui = false
+	advice = false
+[pull]
+	ff = only
+[core]
+	pager = less -R -F -X
+[alias]
+	log1 = log --oneline
+	log1g = log --oneline --graph
+[init]
+	defaultBranch = main
